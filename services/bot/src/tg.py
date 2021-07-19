@@ -21,13 +21,14 @@ class DutchTeacherBot:
         # LOGGER CONFIGURATION
         logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-    def start(self, context) -> None:
+    def start(self, update) -> None:
         """
         Functionality of "START" command
         :param context:
         """
         message = 'Welcome to the bot'
-        context.bot.send_message(chat_id=self.chat_id, text=message)
+        update.message.reply_text(message)
+        # context.bot.send_message(chat_id=self.chat_id, text=message)
 
     def register_commands(self) -> None:
         """

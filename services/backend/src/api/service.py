@@ -76,8 +76,7 @@ class Application:
             dictionary_repository = DictionaryRepository(database)
             try:
                 r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
-                for entry in json.loads(r["result"]):
-                    print(entry)
+                for entry in r["result"]:
                     await dictionary_repository.create_dictionary_entry(**entry)
             except Exception as e:
                 logger.warning("Error Writing Data")
