@@ -2,6 +2,7 @@
 import json
 import logging
 
+import requests
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -74,9 +75,10 @@ class Application:
                 Called only once when we want to add some date in DB"""
             dictionary_repository = DictionaryRepository(database)
             try:
-                with open("../../../bot/src/data/dictionary_database.json") as file_handler:
-                    for entry in json.load(file_handler):
-                        await dictionary_repository.create_dictionary_entry(**entry)
+                result = requests.get("http://bot:8080/api/v1/bot/get_data").json()
+                for entry in json.loads(result):
+                    print(entry)
+                    await dictionary_repository.create_dictionary_entry(**entry)
             except Exception as e:
                 logger.warning("Error Writing Data")
                 logger.warning(e)
@@ -85,7 +87,7 @@ class Application:
 
         app.add_event_handler("startup", connect_to_db)
         # app.add_event_handler("startup", self.start_telegram_bot)
-        # app.add_event_handler("startup", populate_db)
+        app.add_event_handler("startup", populate_db)
         app.add_event_handler("shutdown", close_db_connection)
 
         return app

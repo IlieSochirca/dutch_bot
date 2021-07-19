@@ -1,8 +1,5 @@
 """Module where all app routes(urls) will be listed"""
 from fastapi import APIRouter
-
-from .db import database
-
 from .repository import DictionaryRepository
 from .schema import DictionarySchema, DictionaryInSchema
 
