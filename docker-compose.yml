@@ -57,7 +57,7 @@ services:
     restart: always
     build: ./services/nginx
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./services/backend:/usr/share/nginx/html/backend:ro
       - ./services/bot/:/usr/share/nginx//html/bot:ro
