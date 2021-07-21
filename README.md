@@ -1,2 +1,2 @@
 # dutch_bot
-Personale telegram bot that acts like a dutch language teacher
+Personal telegram bot that acts like a dutch language teacher
