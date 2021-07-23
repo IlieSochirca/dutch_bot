@@ -75,7 +75,7 @@ class Application:
                 Called only once when we want to add some date in DB"""
             dictionary_repository = DictionaryRepository(database)
             try:
-                r = requests.get("http://bot:8082/api/v1/bot/get_data").json()
+                r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
                 for entry in r["result"]:
                     await dictionary_repository.create_dictionary_entry(**entry)
             except Exception as e:
