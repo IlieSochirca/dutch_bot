@@ -13,6 +13,6 @@ RUN pip3 install -r backend/requirements.txt
 
 COPY src/. backend/.
 
-EXPOSE 8080
+EXPOSE 8081
 
 #CMD alembic upgrade head && uvicorn main:application --host 0.0.0.0 --port $PORT --reload
