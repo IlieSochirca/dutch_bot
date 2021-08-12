@@ -1,4 +1,5 @@
-"""Model that is responsible for Pydantic Model Definition.
+"""
+Module that is responsible for Pydantic Model Definition.
 Grace to Pydantic models, the input data will be validated, serialized (converted), and annotated
 """
 from pydantic import BaseModel

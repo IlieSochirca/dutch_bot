@@ -32,7 +32,7 @@ class Application:
 
         app = FastAPI()
 
-        metadata.create_all(bind=engine)  # this is to create our models in the DB
+        # metadata.create_all(bind=engine)  # this is to create our models in the DB
 
         app.add_middleware(
             CORSMiddleware,
