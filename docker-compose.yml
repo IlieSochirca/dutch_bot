@@ -17,7 +17,8 @@ services:
       - "./services/backend/src/:/srv/dutch_bot/backend" # the directory created as WORKDIR in Dockerfile
     ports:
       - '${BACKEND_PORT}:8080'
-    command: bash -c 'cd backend/ && alembic upgrade head; uvicorn main:application --host 0.0.0.0 --port 8080 --reload'
+#    command: bash -c 'cd backend/ && alembic upgrade head; uvicorn main:application --host 0.0.0.0 --port 8080 --reload'
+    command: bash -c 'cd backend/; uvicorn main:application --host 0.0.0.0 --port 8080 --reload'
     # another option: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn app.main:app --host 0.0.0.0'
     logging:
       driver: "json-file"
