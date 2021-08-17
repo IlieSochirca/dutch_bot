@@ -74,7 +74,7 @@ class Application:
             """Reads .json file and add entry to DB
                 Called only once when we want to add some date in DB"""
             dictionary_repository = DictionaryRepository(database)
-            with open("./data/dictionary_database.json") as file_handler:
+            with open("dictionary_database.json") as file_handler:
                 data = json.load(file_handler)
             try:
                 # r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
