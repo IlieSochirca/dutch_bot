@@ -74,9 +74,12 @@ class Application:
             """Reads .json file and add entry to DB
                 Called only once when we want to add some date in DB"""
             dictionary_repository = DictionaryRepository(database)
+            with open("data/dictionary_database.json") as file_handler:
+                data = json.load(file_handler)
             try:
-                r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
-                for entry in r["result"]:
+                # r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
+                # for entry in r["result"]:
+                for entry in json.load(data):
                     await dictionary_repository.create_dictionary_entry(**entry)
             except Exception as e:
                 logger.warning("Error Writing Data")
