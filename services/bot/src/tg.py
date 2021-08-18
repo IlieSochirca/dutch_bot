@@ -50,13 +50,13 @@ class DutchTeacherBot:
     def register_cronjobs(self) -> None:
         """This method is registering methods"""
         j = self.updater.job_queue
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=17, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=14, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=35, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=1, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=17, minute=1, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=14, minute=1, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
+        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=20, minute=24, second=00))
 
 
 if __name__ == "__main__":
