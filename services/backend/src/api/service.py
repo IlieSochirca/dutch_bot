@@ -91,7 +91,7 @@ class Application:
 
         app.add_event_handler("startup", connect_to_db)
         # app.add_event_handler("startup", self.start_telegram_bot)
-        app.add_event_handler("startup", populate_db)
+        # app.add_event_handler("startup", populate_db)
         app.add_event_handler("shutdown", close_db_connection)
 
         return app
