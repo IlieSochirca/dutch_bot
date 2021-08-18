@@ -74,15 +74,18 @@ class Application:
             """Reads .json file and add entry to DB
                 Called only once when we want to add some date in DB"""
             dictionary_repository = DictionaryRepository(database)
-            with open("dictionary_database.json") as file_handler:
+
+            # read json file that contains data for DB
+            with open("/srv/dutch_bot/backend/api/dictionary_database.json") as file_handler:
                 data = json.load(file_handler)
             try:
                 # r = requests.get("http://bot:8080/api/v1/bot/get_data").json()
                 # for entry in r["result"]:
-                for entry in json.load(data):
+                for entry in data:
+                    print(entry)
                     await dictionary_repository.create_dictionary_entry(**entry)
             except Exception as e:
-                logger.warning("Error Writing Data")
+                logger.warning("Error Writing Data: %s", e)
                 logger.warning(e)
 
         app.include_router(router, prefix="/api/v1/dictionary")
