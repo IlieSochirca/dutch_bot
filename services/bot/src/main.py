@@ -12,7 +12,7 @@ app = FastAPI()
 def start_tg_bog():
     """Method responsible for starting the TG bot"""
     t = DutchTeacherBot()
-    t.register_commands()
+    # t.register_commands()
     t.register_cronjobs()
 
 
