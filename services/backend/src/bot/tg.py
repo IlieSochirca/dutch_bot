@@ -1,9 +1,9 @@
 """Module that contains all Telegram Bot logic"""
+import os
+import requests
 import datetime
 import logging
-import os
 
-import requests
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 
@@ -57,13 +57,13 @@ class DutchTeacherBot:
     def register_cronjobs(self) -> None:
         """This method is registering methods"""
         j = self.updater.job_queue
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=1, second=00))
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=17, minute=1, second=00))
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=14, minute=1, second=00))
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
-        # j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=16, minute=54, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=17, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=14, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=30, second=00))
 
 
 if __name__ == "__main__":

@@ -8,8 +8,6 @@ services:
       - "5432:5432"
     env_file:
       - .env
-    networks:
-      - shared_network
   backend:
     build:
       context: ./services/backend/
@@ -29,47 +27,6 @@ services:
       - .env
     depends_on:
       - db
-    networks:
-      - shared_network
-  bot:
-    build:
-      context: ./services/bot/
-    volumes:
-      - "./services/bot/src/:/srv/dutch_bot/bot"
-    ports:
-      - '${BOT_PORT}:8080'
-    environment:
-      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN}
-      TELEGRAM_USER_ID: ${TELEGRAM_USER_ID}
-      CHAT_ID: ${CHAT_ID}
-    command: bash -c "cd bot/; uvicorn main:app --host 0.0.0.0 --port 8080 --reload"
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "5"
-    env_file:
-      - .env
-    depends_on:
-      - db
-    networks:
-      - shared_network
-  nginx:
-    restart: always
-    build: ./services/nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./services/backend:/usr/share/nginx/html/backend:ro
-      - ./services/bot/:/usr/share/nginx//html/bot:ro
-    links:
-      - backend
-      - bot
-    depends_on:
-      - backend
-      - bot
-    networks:
-      - shared_network
   pgadmin:
     image: dpage/pgadmin4
     depends_on:
@@ -78,13 +35,8 @@ services:
       - .env
     ports:
       - "5050:80"
-    networks:
-      - shared_network
     restart: always
 volumes:
   postgres_data:
     # This config will bind postgres_data to the "/var/lib/postgresql/data/" directory in the container.
 
-networks:
- shared_network:
-   driver: bridge
