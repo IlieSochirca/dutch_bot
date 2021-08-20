@@ -50,9 +50,10 @@ class DutchTeacherBot:
             This needs to make a request to "backend" container asking for data"""
 
         result = requests.get("http://backend:8080/api/v1/dictionary/get_data").json()
-
-        context.bot.send_message(chat_id=self.chat_id,
-                                 text=f"-Dutch: {result['dutch']}\n-English: {result['english']}")
+        # Send message to telegram bot using Telegram API
+        message = "You get your daily portion of Dutch!"
+        requests.post(f"https://api.telegram.org/bot{self.token}/sendMessage?chat_id={self.chat_id}&text={message}")
+        context.bot.send_message(chat_id=self.chat_id, text=f"-Dutch: {result['dutch']}\n-English: {result['english']}")
 
     def register_cronjobs(self) -> None:
         """This method is registering methods"""
@@ -63,7 +64,7 @@ class DutchTeacherBot:
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
-        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=30, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=8, minute=8, second=00))
 
 
 if __name__ == "__main__":
