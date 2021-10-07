@@ -1,18 +1,7 @@
 """Module that contains the model definition"""
 import sqlalchemy
-from sqlalchemy import Column, Integer, String
 
-from .db import metadata
-
-
-# class DictionaryModel(Base):
-#     """Dictionary Model Definition"""
-#     __tablename__ = "dictionary"
-#     __table_args__ = {'extend_existing': True}
-#
-#     id = Column(Integer, primary_key=True, index=True)
-#     dutch = Column(String)
-#     english = Column(String)
+from .base import metadata
 
 dictionary = sqlalchemy.Table(
     "dictionary",

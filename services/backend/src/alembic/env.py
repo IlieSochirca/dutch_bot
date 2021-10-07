@@ -35,7 +35,7 @@ fileConfig(config.config_file_name)
 
 # ---------------- added code here -------------------------#
 from api import models
-from api.db import metadata
+from api.base import metadata
 
 # ------------------------------------------------------------#
 # ---------------- changed code here -------------------------#

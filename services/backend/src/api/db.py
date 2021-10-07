@@ -1,20 +1,36 @@
 """Module that contains DB related logic"""
 
-import sqlalchemy
+from typing import Callable, Type
+
 from databases import Database
-from sqlalchemy.orm import sessionmaker
+from fastapi import Depends
+from starlette.requests import Request
 
-from .config import DATABASE_URL
+from .repository import BaseRepository
 
-from sqlalchemy.ext.declarative import declarative_base
 
-database = Database(DATABASE_URL)  # initialize DB
-metadata = sqlalchemy.MetaData()
+def get_database(request: Request) -> Database:
+    """
 
-engine = sqlalchemy.create_engine(DATABASE_URL, pool_size=3)
+    :param request:
+    :return: a reference to our DB connection that is established in "on_startup_handler" function
+    """
+    return request.app.state._db
 
-# Base = declarative_base()
-#
-# SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-#
-# database = SessionLocal()
+
+def get_repository(repo_type: Type[BaseRepository]) -> Callable:
+    """
+
+    :param repo_type:
+    :return:
+    """
+
+    def get_repo(db: Database = Depends(get_database)) -> Type[BaseRepository]:
+        """
+
+        :param db: method dependency, depends on 'get_database' method declared above
+        :return:
+        """
+        return repo_type(db)
+
+    return get_repo

@@ -2,6 +2,7 @@
 import os
 from urllib.parse import quote_plus
 
+
 host_server = os.getenv("POSTGRES_HOST", "localhost")
 database_port = os.getenv("POSTGRES_PORT", 5432)
 database_name = os.getenv("POSTGRES_NAME", "dutch_postgres")

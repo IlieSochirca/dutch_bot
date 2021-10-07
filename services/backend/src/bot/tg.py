@@ -50,6 +50,7 @@ class DutchTeacherBot:
             This needs to make a request to "backend" container asking for data"""
 
         result = requests.get("http://backend:8080/api/v1/dictionary/get_data").json()
+
         # Send message to telegram bot using Telegram API
         message = "You get your daily portion of Dutch!"
         requests.post(f"https://api.telegram.org/bot{self.token}/sendMessage?chat_id={self.chat_id}&text={message}")
@@ -60,17 +61,12 @@ class DutchTeacherBot:
         j = self.updater.job_queue
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=19, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=17, minute=1, second=00))
+        j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=18, minute=45, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=14, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=12, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=9, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=7, minute=1, second=00))
         j.run_daily(self.once, days=tuple(range(7)), time=datetime.time(hour=8, minute=8, second=00))
-
-
-if __name__ == "__main__":
-    t = DutchTeacherBot()
-    t.register_commands()
-    t.register_cronjobs()
 
 # DOCUMENTATION
 # https://medium.com/analytics-vidhya/python-telegram-bot-with-scheduled-tasks-932edd61c534

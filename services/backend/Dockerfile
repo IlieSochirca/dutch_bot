@@ -15,4 +15,3 @@ COPY src/. backend/.
 
 EXPOSE 8080
 
-#CMD alembic upgrade head && uvicorn main:application --host 0.0.0.0 --port $PORT --reload
